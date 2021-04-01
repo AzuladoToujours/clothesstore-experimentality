@@ -7,7 +7,9 @@ const models = require('../../database/models');
 
 const getProductByIdDAO = async (id) => {
   try {
-    const product = await models.Products.findByPk(id);
+    const product = await models.Products.findByPk(id, {
+      attributes: { exclude: ['createdAt', 'updatedAt'] },
+    });
 
     product.visits = product.visits + 1;
     await product.save();

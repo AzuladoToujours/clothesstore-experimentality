@@ -1,6 +1,9 @@
-const calculeDiscountPrice = (price, discount) => {
+const calculeDiscountPrice = (product) => {
+  let { discount, price } = product.dataValues;
+
   let discountPrice = price - price * (discount / 100);
-  return discountPrice;
+  product.dataValues.discount_price = discountPrice;
+  return product;
 };
 
 const calculeDiscountPriceProducts = (products) => {

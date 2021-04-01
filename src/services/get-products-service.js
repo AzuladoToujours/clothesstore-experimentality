@@ -1,4 +1,5 @@
 const { getProductsDAO } = require('../dao/products/get-products-dao');
+const { calculeDiscountPriceProducts } = require('../utils/products-utils');
 
 /**
  * Searchs all products
@@ -21,6 +22,8 @@ const getProductsService = async (req, res) => {
     return res.status(databaseError.statusCode).json(databaseError.errorDto());
   }
 
+  const productsWithDiscount = calculeDiscountPriceProducts(products.rows);
+
   const paging = {
     total: products.count,
     limit: limit,
@@ -29,7 +32,7 @@ const getProductsService = async (req, res) => {
   return res.status(200).json({
     status: 'Succesful',
     paging,
-    data: products.rows,
+    data: productsWithDiscount,
     message: 'GET_PRODUCTS',
   });
 };

@@ -1,4 +1,5 @@
 const { getProductByIdDAO } = require('../dao/products/get-product-by-id-dao');
+const { calculeDiscountPrice } = require('../utils/products-utils');
 
 /**
  * Searchs all products
@@ -24,11 +25,13 @@ const getProductByIdService = async (req, res) => {
     return res.status(notFoundError.statusCode).json(notFoundError.errorDto());
   }
 
+  productByIdWithDiscount = calculeDiscountPrice(product);
+
   product.visits = undefined;
 
   return res.status(200).json({
     status: 'Succesful',
-    data: product,
+    data: productByIdWithDiscount,
     message: 'GET_PRODUCT_BY_ID',
   });
 };
