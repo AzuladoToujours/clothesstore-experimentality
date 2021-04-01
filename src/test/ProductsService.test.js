@@ -14,12 +14,11 @@ describe('Test Get products', () => {
 describe('Test pagination at Get products', () => {
   it('Should retrieve products with succesful pagination', async () => {
     const res = await request(app).get('/api/products?limit=3&offset=2');
-    console.log(res.body.data);
     expect(res.statusCode).toEqual(200);
     expect(res.body.status).toMatch(/Succesful/);
     expect(res.body.paging.limit).toBe('3');
     expect(res.body.paging.offset).toBe('2');
-    expect(res.body.data[0].name).toMatch(/flores/);
+    expect(res.body.data[0].name).toMatch(/[bB]lusa/);
   });
 });
 
@@ -47,7 +46,7 @@ describe('Test no query param at Get products by name', () => {
   it('Should return an empty array if theres no query in the param', async () => {
     const res = await request(app).get('/api/product/search?');
     expect(res.statusCode).toEqual(400);
-    expect(res.body.message).toMatch(/NO_QUERY/);
+    expect(res.body.error).toMatch(/NO_QUERY_PROPERTY/);
   });
 });
 
@@ -62,5 +61,24 @@ describe('Test pagination at Get Products by name', () => {
     expect(res.body.data[0].name).toMatch(/Blusa/);
     expect(res.body.paging.limit).toBe('1');
     expect(res.body.paging.offset).toBe('0');
+  });
+});
+
+describe('Test getting a product by id', () => {
+  it('Should return the products that refers to the id', async () => {
+    const res = await request(app).get(
+      '/api/product/b4c57282-61f3-4038-a2fb-2dbaa8b681ee'
+    );
+    expect(res.statusCode).toEqual(200);
+    expect(res.body.data.name).toMatch(/[eE]nterizo/);
+  });
+});
+
+describe('Test fail when getting a product by wrong id', () => {
+  it('Should return a 404 and Info not found when the id is wrong', async () => {
+    const res = await request(app).get('/api/product/b4c57282-61f3');
+    expect(res.statusCode).toEqual(404);
+    expect(res.body.status).toMatch(/Failed/);
+    expect(res.body.error).toMatch(/INFO_NOT_FOUND/);
   });
 });

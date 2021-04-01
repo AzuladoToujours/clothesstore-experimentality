@@ -7,10 +7,6 @@ class NotFoundError extends Error {
     this.statusCode = 404;
   }
 
-  errorResponse(res) {
-    return res.status(this.status).json({ error: `${this.error}` });
-  }
-
   errorDto() {
     return {
       status: this.status,

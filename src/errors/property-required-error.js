@@ -3,17 +3,13 @@ class PropertyRequiredError extends Error {
     super();
     this.name = 'PropertyRequiredError';
     this.error = `NO_${property.toUpperCase()}_PROPERTY`;
-    this.status = 400;
-  }
-
-  errorResponse(res) {
-    return res.status(this.status).json({ error: `${this.error}` });
+    this.statusCode = 400;
+    this.status = 'Failed';
   }
 
   errorDto() {
     return {
       status: this.status,
-      message: this.message,
       error: this.error,
     };
   }
