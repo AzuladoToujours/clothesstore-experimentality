@@ -31,7 +31,7 @@ pipeline {
     }
     stage('Schedule Deployment') {
         steps {
-          build job: 'Express-CD', parameters: [string(name: 'ARTIFACT_ID', value:"${env.ARTIFACT_ID}"), 
+          build job: 'CLOTHES_CD', parameters: [string(name: 'ARTIFACT_ID', value:"${env.ARTIFACT_ID}"), 
                                                 string(name: 'SERVICE_NAME', value: "${SERVICE_NAME}"), 
                                                 string(name: 'STACK_NAME', value: "${STACK_NAME}")], wait: false
         }
