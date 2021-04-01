@@ -11,10 +11,11 @@ const { calculeDiscountPriceProducts } = require('../utils/products-utils');
  */
 const getProductsByNameService = async (req, res) => {
   if (!req.query.q) {
-    return res.status(400).json({
-      status: 'Failed',
-      message: 'NO_QUERY',
-    });
+    const PropertyRequiredError = require('../errors/property-required-error');
+    let propertyRequired = new PropertyRequiredError('query');
+    return res
+      .status(propertyRequired.statusCode)
+      .json(propertyRequired.errorDto());
   } else {
     let offset, limit;
 
@@ -22,6 +23,15 @@ const getProductsByNameService = async (req, res) => {
     !req.query.limit ? (limit = '2') : (limit = req.query.limit);
     const query = req.query.q;
     const productsByName = await getProductsByNameDAO(query, limit, offset);
+
+    if (!productsByName) {
+      const DatabaseError = require('../errors/database-error');
+      let databaseError = new DatabaseError();
+      return res
+        .status(databaseError.statusCode)
+        .json(databaseError.errorDto());
+    }
+
     let productsByNameWithDiscount = calculeDiscountPriceProducts(
       productsByName.rows
     );

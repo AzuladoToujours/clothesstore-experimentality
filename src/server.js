@@ -5,6 +5,5 @@ let port = configs.port;
 let host = configs.host;
 
 app.listen(port, host, () => {
-  console.log('Testing CD Pipeline');
   console.log(`Server on port http://${host}:${port}`);
 });

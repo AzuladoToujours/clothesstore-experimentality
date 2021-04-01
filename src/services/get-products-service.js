@@ -15,6 +15,12 @@ const getProductsService = async (req, res) => {
 
   const products = await getProductsDAO(limit, offset);
 
+  if (!products) {
+    const DatabaseError = require('../errors/database-error');
+    let databaseError = new DatabaseError();
+    return res.status(databaseError.statusCode).json(databaseError.errorDto());
+  }
+
   const paging = {
     total: products.count,
     limit: limit,

@@ -9,6 +9,7 @@ const models = require('../../database/models');
 const getProductsDAO = async (limit, offset) => {
   try {
     const products = await models.Products.findAndCountAll({
+      attributes: { exclude: ['visits'] },
       limit: limit,
       offset: offset,
     });
