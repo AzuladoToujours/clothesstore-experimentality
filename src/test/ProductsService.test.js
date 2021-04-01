@@ -1,5 +1,9 @@
 const request = require('supertest');
 const app = require('../app');
+const {
+  calculeDiscountPrice,
+  calculeDiscountPriceProducts,
+} = require('../utils/products-utils');
 
 describe('Test Get products', () => {
   it('Should retrieve products with succesful answer', async () => {
@@ -18,7 +22,7 @@ describe('Test pagination at Get products', () => {
     expect(res.body.status).toMatch(/Succesful/);
     expect(res.body.paging.limit).toBe('3');
     expect(res.body.paging.offset).toBe('2');
-    expect(res.body.data[0].name).toMatch(/[bB]lusa/);
+    expect(res.body.data[0].name).toMatch(/color/);
   });
 });
 
@@ -71,6 +75,26 @@ describe('Test getting a product by id', () => {
     );
     expect(res.statusCode).toEqual(200);
     expect(res.body.data.name).toMatch(/[eE]nterizo/);
+  });
+});
+
+describe('Test calculation of discount on one product', () => {
+  it('Should calculate succesfully the discount', () => {
+    let product = {
+      dataValues: { discount: 50, price: 200452 },
+    };
+    const productWithDiscount = calculeDiscountPrice(product);
+    expect(productWithDiscount.dataValues.discount_price).toBe(100226);
+  });
+});
+
+describe('Test calculation of discounts on multiple products', () => {
+  it('Should calculate succesfully the discount', () => {
+    let product = {
+      dataValues: { discount: 50, price: 200452 },
+    };
+    const productsWithDiscount = calculeDiscountPriceProducts([product]);
+    expect(productsWithDiscount[0].dataValues.discount_price).toBe(100226);
   });
 });
 
