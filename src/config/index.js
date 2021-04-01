@@ -8,7 +8,7 @@ const baseConfig = {
   isDev: env === 'dev',
   isProd: env === 'prod',
   testDbUrl: process.env.TEST_DATABASE_URL,
-  port: process.env.PORT || 5000,
+  port: process.env.PORT || 8080,
 };
 
 let envConfig = {};

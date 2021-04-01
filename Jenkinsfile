@@ -2,7 +2,8 @@ pipeline {
     agent any
 
     environment {
-        ARTIFACT_ID = 'azuladotoujours/clothestore'
+        ARTIFACT_ID = 'azuladotoujours/clothesstore'
+        
         
     }
     stages {
@@ -14,9 +15,21 @@ pipeline {
             }
         }
 
-        stage('Running Tests') {
+        stage('Running Unit Tests') {
       steps {
         sh "docker run --rm --env TEST_DATABASE_URL=${TEST_URL} ${dockerImage.id} npm test"
+      }
+    }
+        stage('Publish') {
+      when {
+        branch 'master'
+      }
+      steps {
+        script {
+          docker.withRegistry("", "DockerHubCredentials") {
+            dockerImage.push()
+          }
+        }
       }
     }
     }
