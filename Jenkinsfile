@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    options {
-        timeout(time:2, unit: 'MINUTES')
-    }
-
     environment {
         ARTIFACT_ID = 'azuladotoujours/clothestore'
         
@@ -20,7 +16,7 @@ pipeline {
 
         stage('Running Tests') {
       steps {
-        sh "docker run--env TEST_DATABASE_URL=${TEST_URL} ${dockerImage.id} npm test"
+        sh "docker run --rm --env TEST_DATABASE_URL=${TEST_URL} ${dockerImage.id} npm test"
       }
     }
     }
