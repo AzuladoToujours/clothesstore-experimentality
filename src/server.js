@@ -3,7 +3,8 @@ const { configs } = require('./config/index');
 
 let port = configs.port;
 let host = configs.host;
-console.log('Testing webhook');
+
 app.listen(port, host, () => {
+  console.log('Testing CD Pipeline');
   console.log(`Server on port http://${host}:${port}`);
 });
