@@ -5,7 +5,7 @@ WORKDIR /clothesstore
 ADD package.json package-lock.json /clothesstore/
 RUN npm install
 
-EXPOSE 5000
+EXPOSE 8080
 
 ADD . /clothesstore
 

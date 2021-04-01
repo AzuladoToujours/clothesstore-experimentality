@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/server.js",
-    "migrate-dev": "sequelize sequelize db:migrate --env dev",
-    "migrate-test": "sequelize sequelize db:migrate --env test",
-    "migrate": "sequelize sequelize db:migrate --env prod",
-    "seed-test": "sequelize db:seed --seed 20210330190017-categories-seed-test.js --env test",
+    "migrate-dev": "sequelize db:migrate --env dev",
+    "migrate-test": "sequelize db:migrate --env test",
+    "migrate": "sequelize db:migrate --env prod",
+    "seed-test": "sequelize db:seed --seed 20210331015849-products-seed-test.js --env test",
     "seed-dev": "sequelize db:seed --seed 20210330224031-products-seed.js --env dev",
     "seed": "sequelize db:seed --seed 20210330224031-products-seed.js --env prod",
     "test": "jest --config src/test/jest.config.js --forceExit --detectOpenHandles"

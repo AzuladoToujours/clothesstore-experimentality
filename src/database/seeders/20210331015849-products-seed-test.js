@@ -6,7 +6,7 @@ module.exports = {
       {
         name: 'Blusa color sólido manga larga',
         description: 'Blusa manga larga',
-        price: 200425,
+        price: 200452,
         createdAt: new Date(),
         updatedAt: new Date(),
       },

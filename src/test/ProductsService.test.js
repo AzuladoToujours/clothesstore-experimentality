@@ -14,11 +14,12 @@ describe('Test Get products', () => {
 describe('Test pagination at Get products', () => {
   it('Should retrieve products with succesful pagination', async () => {
     const res = await request(app).get('/api/products?limit=3&offset=2');
+    console.log(res.body.data);
     expect(res.statusCode).toEqual(200);
     expect(res.body.status).toMatch(/Succesful/);
     expect(res.body.paging.limit).toBe('3');
     expect(res.body.paging.offset).toBe('2');
-    expect(res.body.data[0].name).toMatch(/Blusa/);
+    expect(res.body.data[0].name).toMatch(/flores/);
   });
 });
 
