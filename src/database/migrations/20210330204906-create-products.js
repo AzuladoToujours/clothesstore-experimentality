@@ -1,14 +1,18 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
+    await queryInterface.sequelize.query(
+      'CREATE EXTENSION IF NOT EXISTS "uuid-ossp";'
+    );
     await queryInterface.sequelize
-      .query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp";')
+      .query('CREATE EXTENSION IF NOT EXISTS unaccent')
       .then(async () => {
         await queryInterface.createTable('Products', {
           id: {
             allowNull: false,
             primaryKey: true,
             type: Sequelize.UUID,
+            defaultValue: Sequelize.literal('uuid_generate_v4()'),
           },
           name: {
             allowNull: false,
