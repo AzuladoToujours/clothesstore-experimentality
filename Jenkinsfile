@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         ARTIFACT_ID = 'azuladotoujours/clothesstore'
-        
+
         
     }
     stages {
@@ -21,9 +21,6 @@ pipeline {
       }
     }
         stage('Publish') {
-      when {
-        branch 'master'
-      }
       steps {
         script {
           docker.withRegistry("", "DockerHubCredentials") {
