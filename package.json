@@ -11,7 +11,7 @@
     "seed-test": "sequelize db:seed --seed 20210331015849-products-seed-test.js --env test",
     "seed-dev": "sequelize db:seed --seed 20210330224031-products-seed.js --env dev",
     "seed": "sequelize db:seed --seed 20210330224031-products-seed.js --env prod",
-    "test": "jest --config src/test/jest.config.js --forceExit --detectOpenHandles"
+    "test": "jest --config src/test/jest.config.js --forceExit"
   },
   "author": "Camilo Andrés Mejía Posada",
   "license": "ISC",
@@ -21,6 +21,7 @@
     "express": "^4.17.1",
     "lodash": "^4.17.21",
     "morgan": "^1.10.0",
+    "node-cron": "^3.0.0",
     "nodemon": "^2.0.7",
     "pg": "^8.5.1",
     "sequelize": "^6.6.2"

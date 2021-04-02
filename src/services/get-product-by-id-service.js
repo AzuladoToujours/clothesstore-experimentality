@@ -2,7 +2,7 @@ const { getProductByIdDAO } = require('../dao/products/get-product-by-id-dao');
 const { calculeDiscountPrice } = require('../utils/products-utils');
 
 /**
- * Searchs all products
+ * Searchs product by id
  * @param {object} req
  * @param {object} res
  * @returns {json} json

@@ -4,6 +4,7 @@ const models = require('../../database/models');
  * Gets products from DB
  * @param {String} limit
  * @param {String} offset
+ * @returns {Object} products
  */
 
 const getProductsDAO = async (limit, offset) => {
