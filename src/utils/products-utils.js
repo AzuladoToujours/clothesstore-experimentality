@@ -1,3 +1,14 @@
+const {
+  restartProductsVisitsDAO,
+} = require('../dao/products/restart-products-visits-dao');
+const cron = require('node-cron');
+
+/**
+ * calculeDiscount in Product and updates the product with the discount
+ * @param {Object} product
+ * @returns {Object} product
+ */
+
 const calculeDiscountPrice = (product) => {
   let { discount, price } = product.dataValues;
 
@@ -5,6 +16,12 @@ const calculeDiscountPrice = (product) => {
   product.dataValues.discount_price = discountPrice;
   return product;
 };
+
+/**
+ * calculeDiscount in Products and updates the products with the discounts
+ * @param {Object} products
+ * @returns {Object} products
+ */
 
 const calculeDiscountPriceProducts = (products) => {
   products.map((product) => {
@@ -19,4 +36,23 @@ const calculeDiscountPriceProducts = (products) => {
   return products;
 };
 
-module.exports = { calculeDiscountPrice, calculeDiscountPriceProducts };
+/**
+ * Restarts visits in all products everyday at 12:00AM
+ */
+
+const restartProductsVisits = cron.schedule(
+  '0 0 0 * * *',
+  async () => {
+    await restartProductsVisitsDAO();
+  },
+  {
+    scheduled: false,
+    timezone: 'America/Bogota',
+  }
+);
+
+module.exports = {
+  calculeDiscountPrice,
+  calculeDiscountPriceProducts,
+  restartProductsVisits,
+};

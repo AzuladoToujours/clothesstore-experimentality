@@ -4,6 +4,7 @@ module.exports = {
   production: {
     url: configs.prodDbUrl,
     dialect: 'postgres',
+    logging: false,
   },
   development: {
     url: configs.devDbUrl,

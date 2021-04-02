@@ -28,7 +28,7 @@ describe('Test pagination at Get products', () => {
 
 describe('Test Get Products by name', () => {
   it('Should get products with query params succesfully', async () => {
-    const res = await request(app).get('/api/product/search?q=flores');
+    const res = await request(app).get('/api/products/search?q=flores');
     expect(res.statusCode).toEqual(200);
     expect(res.body.status).toMatch(/Succesful/);
     expect(res.body.data[0].name).toMatch(/[fF][lL][oO][rR][eE][sS]/);
@@ -39,7 +39,7 @@ describe('Test Get Products by name', () => {
 
 describe('Test failed query at Get products by name', () => {
   it('Should return an empty array if the query doesnt match a product in DB', async () => {
-    const res = await request(app).get('/api/product/search?q=test');
+    const res = await request(app).get('/api/products/search?q=test');
     expect(res.statusCode).toEqual(200);
     expect(res.body.status).toMatch(/Succesful/);
     expect(res.body.data.length).toBe(0);
@@ -48,7 +48,7 @@ describe('Test failed query at Get products by name', () => {
 
 describe('Test no query param at Get products by name', () => {
   it('Should return an empty array if theres no query in the param', async () => {
-    const res = await request(app).get('/api/product/search?');
+    const res = await request(app).get('/api/products/search?');
     expect(res.statusCode).toEqual(400);
     expect(res.body.error).toMatch(/NO_QUERY_PROPERTY/);
   });
@@ -57,7 +57,7 @@ describe('Test no query param at Get products by name', () => {
 describe('Test pagination at Get Products by name', () => {
   it('Should get products with paginations params succesfully', async () => {
     const res = await request(app).get(
-      '/api/product/search?q=blusa&limit=1&offset=0'
+      '/api/products/search?q=blusa&limit=1&offset=0'
     );
 
     expect(res.statusCode).toEqual(200);

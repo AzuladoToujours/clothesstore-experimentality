@@ -6,6 +6,7 @@ const sequelize = require('sequelize');
  * @param {String} query
  * @param {String} limit
  * @param {String} offset
+ * @returns {Object} productsByName
  */
 
 const getProductsByNameDAO = async (query, limit, offset) => {

@@ -5,6 +5,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 dotenv.config();
 const morganMode = `${process.env.ENV}` || 'dev';
+const { restartProductsVisits } = require('./utils/products-utils');
 
 //Importing routes
 const ProductRoutes = require('./routes/routes');
@@ -21,5 +22,7 @@ app.get('*', function (req, res) {
   let notFound = new NotFoundError();
   return res.status(notFound.statusCode).json(notFound.errorDto());
 });
+
+restartProductsVisits.start();
 
 module.exports = app;
