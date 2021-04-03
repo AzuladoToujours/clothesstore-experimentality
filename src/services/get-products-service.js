@@ -25,7 +25,7 @@ const getProductsService = async (req, res) => {
   const productsWithDiscount = calculeDiscountPriceProducts(products.rows);
 
   const paging = {
-    total: products.count,
+    total: products.count / 2,
     limit: limit,
     offset: offset,
   };

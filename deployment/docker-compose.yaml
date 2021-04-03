@@ -11,6 +11,12 @@
         - PROD_HOST=0.0.0.0
       ports:
         - 8080:8080
+      deploy:
+        replicas: 1
+        update_config:
+          parallelism: 1
+          order: start-first
+          failure_action: rollback
 
     db-prod:
       image: postgres
