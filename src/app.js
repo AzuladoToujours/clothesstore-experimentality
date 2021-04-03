@@ -6,6 +6,8 @@ const dotenv = require('dotenv');
 dotenv.config();
 const morganMode = `${process.env.ENV}` || 'dev';
 const { restartProductsVisits } = require('./utils/products-utils');
+const swaggerUi = require('swagger-ui-express'),
+  swaggerDocument = require('./swagger.json');
 
 //Importing routes
 const ProductRoutes = require('./routes/routes');
@@ -17,6 +19,7 @@ app.use(cors());
 
 //Routes configuration
 app.use(`/api/`, ProductRoutes);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.get('*', function (req, res) {
   const NotFoundError = require('./errors/not-found-error');
   let notFound = new NotFoundError();

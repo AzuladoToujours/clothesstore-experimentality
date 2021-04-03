@@ -5,13 +5,15 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/server.js",
-    "migrate-dev": "sequelize db:migrate --env dev",
+    "migrate-dev": "sequelize db:migrate --env development",
     "migrate-test": "sequelize db:migrate --env test",
-    "migrate": "sequelize db:migrate --env prod",
-    "seed-products-test": "sequelize db:seed --seed 20210331015849-products-seed-test.js --env test",
-    "seed-products-dev": "sequelize db:seed --seed 20210330224031-products-seed.js --env dev",
-    "seed-images-test": "sequelize db:seed --seed 20210402230012-images-seed-test.js --env test",
+    "migrate-prod": "sequelize db:migrate --env production",
+    "seed-products-dev": "sequelize db:seed --seed 20210330224031-products-seed.js --env development",
+    "seed-products-test": "sequelize db:seed --seed 20210330224031-products-seed.js --env test",
+    "seed-products-prod": "sequelize db:seed --seed 20210330224031-products-seed.js --env production",
     "seed-images-dev": "sequelize db:seed --seed 20210402220828-images-seed-dev.js --env development",
+    "seed-images-test": "sequelize db:seed --seed 20210402230012-images-seed-test.js --env test",
+    "seed-images-prod": "sequelize db:seed --seed 20210403221454-images-seed-prod.js --env production",
     "seed": "sequelize db:seed --seed 20210330224031-products-seed.js --env prod",
     "test": "jest --config src/test/jest.config.js --forceExit"
   },
@@ -26,7 +28,8 @@
     "node-cron": "^3.0.0",
     "nodemon": "^2.0.7",
     "pg": "^8.5.1",
-    "sequelize": "^6.6.2"
+    "sequelize": "^6.6.2",
+    "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",

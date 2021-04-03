@@ -1,0 +1,151 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Experimentality's CLOTHES STORE technical test",
+    "description": "API DOCUMENTATION",
+    "termsOfService": "",
+    "contact": {
+      "email": "camiloa.mejia@udea.edu.co"
+    },
+    "version": "1.0.0"
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  },
+  "servers": [
+    {
+      "url": "http://ec2-3-236-125-125.compute-1.amazonaws.com:8080/api"
+    },
+    {
+      "url": "http://localhost:8080/api"
+    }
+  ],
+  "tags": [
+    {
+      "name": "ALL PRODUCTS",
+      "description": "Get all products"
+    },
+    {
+      "name": "HOT PRODUCTS",
+      "description": "Get the HOTTEST products in the world"
+    },
+    {
+      "name": "SEARCH PRODUCTS BY NAME",
+      "description": "Get the products by a query"
+    },
+    {
+      "name": "PRODUCT BY ID",
+      "description": "Get a product by id"
+    }
+  ],
+  "paths": {
+    "/products": {
+      "get": {
+        "tags": [
+          "ALL PRODUCTS"
+        ],
+        "parameters":[
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Numbers of items to return, Default: 2"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Number of items to skip, Default: 0"
+          }
+        ],
+        "summary": "Get all the products from Database",
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/products/hot": {
+      "get": {
+        "tags": [
+          "HOT PRODUCTS"
+        ],
+        "summary": "Get the most searched products",
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/products/search": {
+      "get": {
+        "tags": [
+          "SEARCH PRODUCTS BY NAME"
+        ],
+        "parameters":[
+          {
+            "in": "query",
+            "name": "q",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Name of the product to be searched"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Numbers of items to return, Default: 2"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Number of items to skip, Default: 0"
+          }
+        ],
+        "summary": "Get all the products from Database",
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/product/{id}": {
+      "get": {
+        "tags": [
+          "PRODUCT BY ID"
+        ],
+        "summary": "Get product's details by his id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Product's id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    }
+  }
+}
