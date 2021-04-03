@@ -36,7 +36,7 @@ const getProductsByNameService = async (req, res) => {
       productsByName.rows
     );
     const paging = {
-      total: productsByName.count,
+      total: productsByName.count / 2,
       limit: limit,
       offset: offset,
     };

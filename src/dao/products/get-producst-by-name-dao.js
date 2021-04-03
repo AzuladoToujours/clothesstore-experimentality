@@ -19,6 +19,17 @@ const getProductsByNameDAO = async (query, limit, offset) => {
           [sequelize.Op.iLike]: `%${queryUnaccent}%`,
         }),
       },
+      include: [
+        {
+          model: models.Images,
+          as: 'images',
+          required: true,
+          where: {
+            [sequelize.Op.or]: [{ type: 'FRONT' }, { type: 'BACK' }],
+          },
+          attributes: ['uri', 'type'],
+        },
+      ],
       limit: limit,
       offset: offset,
     });

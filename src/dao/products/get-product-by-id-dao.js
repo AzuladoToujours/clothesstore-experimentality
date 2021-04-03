@@ -10,6 +10,14 @@ const getProductByIdDAO = async (id) => {
   try {
     const product = await models.Products.findByPk(id, {
       attributes: { exclude: ['createdAt', 'updatedAt'] },
+      include: [
+        {
+          model: models.Images,
+          as: 'images',
+          required: true,
+          attributes: ['uri', 'type'],
+        },
+      ],
     });
 
     await product.increment('visits', { by: 1 });

@@ -8,8 +8,10 @@
     "migrate-dev": "sequelize db:migrate --env dev",
     "migrate-test": "sequelize db:migrate --env test",
     "migrate": "sequelize db:migrate --env prod",
-    "seed-test": "sequelize db:seed --seed 20210331015849-products-seed-test.js --env test",
-    "seed-dev": "sequelize db:seed --seed 20210330224031-products-seed.js --env dev",
+    "seed-products-test": "sequelize db:seed --seed 20210331015849-products-seed-test.js --env test",
+    "seed-products-dev": "sequelize db:seed --seed 20210330224031-products-seed.js --env dev",
+    "seed-images-test": "sequelize db:seed --seed 20210402230012-images-seed-test.js --env test",
+    "seed-images-dev": "sequelize db:seed --seed 20210402220828-images-seed-dev.js --env development",
     "seed": "sequelize db:seed --seed 20210330224031-products-seed.js --env prod",
     "test": "jest --config src/test/jest.config.js --forceExit"
   },

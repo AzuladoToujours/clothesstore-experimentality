@@ -23,6 +23,7 @@ describe('Test pagination at Get products', () => {
     expect(res.body.paging.limit).toBe('3');
     expect(res.body.paging.offset).toBe('2');
     expect(res.body.data[0].name).toMatch(/color/);
+    expect(res.body.data[0].images.length).toBeGreaterThan(0);
   });
 });
 
@@ -34,6 +35,7 @@ describe('Test Get Products by name', () => {
     expect(res.body.data[0].name).toMatch(/[fF][lL][oO][rR][eE][sS]/);
     expect(res.body.paging.limit).toBe('2');
     expect(res.body.paging.offset).toBe('0');
+    expect(res.body.data[0].images.length).toBeGreaterThan(0);
   });
 });
 
@@ -63,6 +65,7 @@ describe('Test pagination at Get Products by name', () => {
     expect(res.statusCode).toEqual(200);
     expect(res.body.status).toMatch(/Succesful/);
     expect(res.body.data[0].name).toMatch(/Blusa/);
+    expect(res.body.data[0].images.length).toBeGreaterThan(0);
     expect(res.body.paging.limit).toBe('1');
     expect(res.body.paging.offset).toBe('0');
   });
@@ -75,6 +78,7 @@ describe('Test getting a product by id', () => {
     );
     expect(res.statusCode).toEqual(200);
     expect(res.body.data.name).toMatch(/[eE]nterizo/);
+    expect(res.body.data.images.length).toBeGreaterThan(0);
   });
 });
 
