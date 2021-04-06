@@ -22,7 +22,6 @@ describe('Test pagination at Get products', () => {
     expect(res.body.status).toMatch(/Succesful/);
     expect(res.body.paging.limit).toBe('3');
     expect(res.body.paging.offset).toBe('2');
-    expect(res.body.data[0].name).toMatch(/color/);
     expect(res.body.data[0].images.length).toBeGreaterThan(0);
   });
 });

@@ -20,6 +20,10 @@ app.use(cors());
 //Routes configuration
 app.use(`/api/`, ProductRoutes);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(500).json({ error: 'an error occurred' });
+});
 app.get('*', function (req, res) {
   const NotFoundError = require('./errors/not-found-error');
   let notFound = new NotFoundError();

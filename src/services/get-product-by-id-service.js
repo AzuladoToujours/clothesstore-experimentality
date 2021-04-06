@@ -11,7 +11,8 @@ const { calculeDiscountPrice } = require('../utils/products-utils');
 const getProductByIdService = async (req, res) => {
   if (!req.params.id) {
     const PropertyRequiredError = require('../errors/property-required-error');
-    let propertyRequired = new PropertyRequiredError('id');
+    let propertyRequired = new PropertyRequiredError();
+    propertyRequired.setPropertyAndError('id');
     return res
       .status(propertyRequired.statusCode)
       .json(propertyRequired.errorDto());

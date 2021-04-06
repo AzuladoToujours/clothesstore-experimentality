@@ -1,10 +1,16 @@
 class PropertyRequiredError extends Error {
-  constructor(property) {
+  constructor() {
     super();
+    this.property = '';
     this.name = 'PropertyRequiredError';
-    this.error = `NO_${property.toUpperCase()}_PROPERTY`;
+    this.error = '';
     this.statusCode = 400;
     this.status = 'Failed';
+  }
+
+  setPropertyAndError(property) {
+    this.property = property;
+    this.error = `NO_${this.property.toUpperCase()}_PROPERTY`;
   }
 
   errorDto() {
