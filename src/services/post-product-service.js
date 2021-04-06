@@ -49,7 +49,6 @@ const postProductsService = async (req, res) => {
 const createImage = async (productId, type, photo, mimetype) => {
   let response = await uploadToS3(productId, type, photo, mimetype);
   await createImagesDAO(productId, response.Location, type);
-  console.log(response.Location);
 };
 
 const createGeneralImages = async (productId, photos, mimetypesGeneral) => {
