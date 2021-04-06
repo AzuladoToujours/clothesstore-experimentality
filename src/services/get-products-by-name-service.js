@@ -12,7 +12,8 @@ const { calculeDiscountPriceProducts } = require('../utils/products-utils');
 const getProductsByNameService = async (req, res) => {
   if (!req.query.q) {
     const PropertyRequiredError = require('../errors/property-required-error');
-    let propertyRequired = new PropertyRequiredError('query');
+    let propertyRequired = new PropertyRequiredError();
+    propertyRequired.setPropertyAndError('query');
     return res
       .status(propertyRequired.statusCode)
       .json(propertyRequired.errorDto());

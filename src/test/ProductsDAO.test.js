@@ -6,6 +6,7 @@ const { getProductByIdDAO } = require('../dao/products/get-product-by-id-dao');
 const {
   restartProductsVisitsDAO,
 } = require('../dao/products/restart-products-visits-dao');
+const { createProductDAO } = require('../dao/products/create-product-dao');
 
 describe('Test getProducts', () => {
   it('Should get all the products from DB', async () => {
@@ -36,5 +37,23 @@ describe('Test restartProductsVisits counter', () => {
   it('Should restart the visits at 0 in all the products', async () => {
     const productsByName = await restartProductsVisitsDAO();
     expect(productsByName[0].visits).toBe(0);
+  });
+});
+
+describe('Test create a new product', () => {
+  it('Should create a new product in the DB', async () => {
+    const product = {
+      name: 'Test Product',
+      price: 20000,
+      discount: 50,
+      description: 'Testing creation of new product',
+    };
+    const productCreated = await createProductDAO(product);
+    expect(productCreated.name).toMatch(/Test Product/);
+    expect(productCreated.price).toBe(20000);
+    expect(productCreated.discount).toBe(50);
+    expect(productCreated.description).toMatch(
+      /Testing creation of new product/
+    );
   });
 });

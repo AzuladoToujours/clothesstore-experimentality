@@ -37,6 +37,10 @@
     {
       "name": "PRODUCT BY ID",
       "description": "Get a product by id"
+    },
+    {
+      "name": "CREATE PRODUCT",
+      "description": "Create a new product"
     }
   ],
   "paths": {
@@ -66,7 +70,55 @@
         "summary": "Get all the products from Database",
         "responses": {
           "200": {
-            "description": "successful operation"
+            "description": "Successful operation"
+          }
+        }
+      },
+      "post": {
+        "tags": ["CREATE PRODUCT"],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "price": {
+                    "type": "integer"
+                  },
+                  "discount": {
+                    "type": "integer"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "frontImage": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "backImage": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "generalImages": {
+                    "type": "array",
+                    "items":{
+                      "type":"string",
+                      "format": "binary"
+                    }
+                    
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Creates a new product in the Database",
+        "responses": {
+          "200": {
+            "description": "Successful operation"
           }
         }
       }
@@ -118,7 +170,7 @@
         "summary": "Get all the products from Database",
         "responses": {
           "200": {
-            "description": "successful operation"
+            "description": "Successful operation"
           }
         }
       }
@@ -142,7 +194,7 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation"
+            "description": "Successful operation"
           }
         }
       }

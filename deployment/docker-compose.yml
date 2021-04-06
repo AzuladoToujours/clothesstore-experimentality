@@ -6,9 +6,13 @@
       environment:
         - ENV=prod
         - NODE_ENV=production
-        - PROD_DATABASE_URL={PROD_DB_URL}
+        - PROD_DATABASE_URL= postgres://{PROD_DB_USER}:{PROD_DB_PWD}@db-prod:5432/{PROD_DB}
         - PORT=8080
         - PROD_HOST=0.0.0.0
+        - AWS_ACCESS_KEY={AWS_IAM_KEY}
+        - AWS_SECRET_ACCESS_KEY={AWS_SECRET_IAM_KEY}
+        - REGION={REGION}
+        - PROD_BUCKET={S3_BUCKET}
       ports:
         - 8080:8080
       deploy:
