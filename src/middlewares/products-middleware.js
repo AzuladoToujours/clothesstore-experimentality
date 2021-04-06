@@ -2,10 +2,10 @@ const Joi = require('joi');
 const JoiError = require('../errors/joi-error');
 
 const schema = Joi.object({
-  name: Joi.string().alphanum().min(3).max(50).required(),
+  name: Joi.string().min(3).max(50).required(),
   price: Joi.number().integer().min(1000).required(),
   discount: Joi.number().integer().min(1).max(100),
-  description: Joi.string().alphanum().min(3).max(50).required(),
+  description: Joi.string().min(3).max(50).required(),
 });
 
 const validateProduct = async (req, res, next) => {
