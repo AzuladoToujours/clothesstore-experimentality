@@ -1,4 +1,4 @@
-# Clothes Store Experimentality :tw-1f454:
+# Clothes Store Experimentality :necktie:
 
 ## Features
 
@@ -8,16 +8,16 @@
 - Product details
 - Create new product
 
-### Full swagger documentation [here](http://3.236.125.125:8080/api-docs/ "here") :tw-1f440:
+### Full swagger documentation [here](http://ec2-3-236-125-125.compute-1.amazonaws.com:8080/api-docs/#/ "here") :eyes:
 
-## Development Requirements :fa-linux:
+## Development Requirements :penguin:
 
 - Node JSv12^
 - PostgreSQL
 - npm v 7.x
 - Docker
 
-### Environment Variables :tw-1f30d:
+### Environment Variables :earth_americas:
 Should create a **.env** file in the root of the project with the following required values.
 
 ```shell
@@ -37,11 +37,11 @@ PROD_BUCKET={prod_s3_bucket}
 ```
 
 
-## Docker Deployment  :tw-1f433: 
+## Docker Deployment :whale2:
 
 In the **deployment** folder, you should see a docker-compose.yml file; this is the configuration file to deploy the application in docker, you must change the environment variables (specified with {}) in order to execute the file, whereas docker-compose or docker in swarm mode.
 
-### Docker-compose
+### Docker-compose :octopus:
 
 #### Requirements
 
@@ -59,7 +59,7 @@ sh runcompose.sh
 docker-compose up -d
 ```
 
-### Docker Swarm
+### Docker Swarm :whale:
 
 #### Requirements
 
